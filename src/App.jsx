@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-  const [currentProgress, setCurrentProgress] = useState(92)
+  const [currentProgress, setCurrentProgress] = useState(95)
 
   return (
     <>
