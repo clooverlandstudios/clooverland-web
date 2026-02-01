@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-  const [currentProgress, setCurrentProgress] = useState(95)
+  const [currentProgress, setCurrentProgress] = useState(100)
 
   return (
     <>
@@ -13,7 +13,7 @@ function App() {
       <h1 style={{color: `gold`, marginTop: `90px`}}>!!!PROGRESS BAR!!!</h1>
       <p style={{transform: `translateY(-40px)`}}>Below will be a funny progress bar for the next games in the meantime.</p>
 
-      <h2 style={{color: `gold`}}>Lights Out: Relight <br /><span style={{color: `white`, fontSize: `3rem`, lineHeight: `1`}}>{currentProgress}%</span></h2>
+      <h2 style={{color: `gold`}}>Lights Out: Relight :: UNDER TESTS<br /><span style={{color: `white`, fontSize: `3rem`, lineHeight: `1`}}>{currentProgress}%</span></h2>
       <progress style={{transform:`translateY(-20px)`, accentColor: `red`}} value={currentProgress} max="100"></progress>
     </>
   )
