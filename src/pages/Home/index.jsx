@@ -10,7 +10,6 @@ export default function Home({isMobile}) {
     const [arcadeImg, setArcadeImg] = useState("./images/arcade/arc_transit.gif")
     const [analogImg, setAnalogImg] = useState("./images/arcade/resources/analog_inactive.png")
     const [btnImg, setButtonImg] = useState("./images/arcade/resources/button_active.png")
-    const [arcadeActive, setArcadeAtive] = useState(false)
 
     const ARCS_PATH = "./images/arcade/arcs/"
     const ARC_TRANSIT = "./images/arcade/arc_transit.gif"
@@ -26,6 +25,7 @@ export default function Home({isMobile}) {
     ]
 
     const [current_game, setCurrentGame] = useState(0);
+    const [first_load, setFirstLoad] = useState(true);
     const [arcade_active, setArcadeActive] = useState(true);
 
     const changeArcadeGame = () => {
@@ -33,15 +33,22 @@ export default function Home({isMobile}) {
 
         if (arcade_active) {
             setArcadeActive(false)
-            setCurrentGame(current_game+1);
             
-            if (current_game >= __GAMES.length-1) {
-                setCurrentGame(0);
+            let nextGame = current_game + 1;
+            if (current_game >= __GAMES.length - 1) {
+                nextGame = 0;
             }
 
-            console.log(current_game)
+            if (first_load) {
+                setFirstLoad(false);
+                nextGame = 0;
+            }
+            
+            setCurrentGame(nextGame);
 
-            updateArcadeVisual(true)
+            console.log(nextGame)
+
+            updateArcadeVisual(true, nextGame)
         }
 
         console.log("Current game: "+__GAMES[current_game][0])
@@ -51,7 +58,7 @@ export default function Home({isMobile}) {
     const gotoGame = () => {
         if (arcade_active) {
             setArcadeActive(false);
-            window.open(__GAMES[current_game-1][0], "_blank")
+            window.open(__GAMES[current_game][0], "_blank")
             setButtonImg("./images/arcade/resources/button_inactive.png")
 
             setTimeout(()=>{
@@ -62,19 +69,19 @@ export default function Home({isMobile}) {
 
     }
 
-    const updateArcadeVisual = (__bool) => {
+    const updateArcadeVisual = (__bool, gameIndex = current_game) => {
         if (__bool) {
             setArcadeImg(ARC_TRANSIT)
             setAnalogImg("./images/arcade/resources/analog_active.png")
             setButtonImg("./images/arcade/resources/button_inactive.png")
 
             setTimeout(()=>{
-                updateArcadeVisual(false)
+                updateArcadeVisual(false, gameIndex)
             }, 1000)
 
         } else {
             setArcadeActive(true);
-            setArcadeImg(__GAMES[current_game][1])
+            setArcadeImg(__GAMES[gameIndex][1])
             setAnalogImg("./images/arcade/resources/analog_inactive.png")
             setButtonImg("./images/arcade/resources/button_active.png")
         }
