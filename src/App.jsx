@@ -1,21 +1,38 @@
-import { useState } from 'react'
 import './App.css'
+
+import AppRoutes from './Routes.jsx'
 
 function App() {
 
-  const [currentProgress, setCurrentProgress] = useState(100)
-
   return (
     <>
-      <h1>Hi!</h1>
-      <p>This is a placeholder website because the new one is still being made.<br />Sorry for it taking so long, I was taking a break from coding.</p>
 
-      <h1 style={{color: `gold`, marginTop: `90px`}}>!!!PROGRESS BAR!!!</h1>
-      <p style={{transform: `translateY(-40px)`}}>Below will be a funny progress bar for the next games in the meantime.</p>
+      <main>
 
-      <h2 style={{color: `gold`}}>Lights Out: Relight :: UNDER TESTS<br /><span style={{color: `white`, fontSize: `3rem`, lineHeight: `1`}}>{currentProgress}%</span></h2>
-      <progress style={{transform:`translateY(-20px)`, accentColor: `red`}} value={currentProgress} max="100"></progress>
+          <header style={{width: `75%`, height: `60px`, display: `flex`, marginTop: `60px`, marginBottom: `80px`, alignItems: `center`, justifyContent: `center`, flexDirection: `column`,
+          }}>
+
+            <img src="./images/website_logo.png" alt="Clooverland Studios Logo" style={{width: `100%`, maxWidth: `460px`, height: `auto`, transform: `scale(1.2)`}} />
+
+          </header>
+
+          <AppRoutes />
+
+           <footer style={{width: `75%`, height: `60px`, display: `flex`, marginTop: `60px`, marginBottom: `80px`, alignItems: `center`, justifyContent: `center`, flexDirection: `column`,
+          }}>
+
+            <h4>
+              © Clooverland Studios 2024 <br/><br />
+              <span style={{color:`gold`, fontSize: `0.8em`}}>
+                For contact info, use this e-mail <a href="mailto:contact@clooverlandstudios.com" style={{color: `rgba(255, 255, 255, 0.87)`, textDecoration: `underline`, userSelect: `all`, fontSize: `1.2em`}}>contact@clooverlandstudios.com</a>
+              </span>
+            </h4>
+
+          </footer>
+
+        </main>
     </>
+    
   )
 }
 
