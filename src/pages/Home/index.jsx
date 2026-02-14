@@ -50,7 +50,6 @@ export default function Home({isMobile}) {
 
     const gotoGame = () => {
         if (arcade_active) {
-            
             setArcadeActive(false);
             window.open(__GAMES[current_game-1][0], "_blank")
             setButtonImg("./images/arcade/resources/button_inactive.png")
@@ -173,5 +172,4 @@ export default function Home({isMobile}) {
             </main>
         </>
     )
-
 }
