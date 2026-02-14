@@ -50,10 +50,9 @@ export default function Home({isMobile}) {
 
     const gotoGame = () => {
         if (arcade_active) {
-            const  __LINK = __GAMES[current_game][0];
-
+            
             setArcadeActive(false);
-            window.open(__LINK, "_blank")
+            window.open(__GAMES[current_game-1][0], "_blank")
             setButtonImg("./images/arcade/resources/button_inactive.png")
 
             setTimeout(()=>{
@@ -174,4 +173,5 @@ export default function Home({isMobile}) {
             </main>
         </>
     )
+
 }
