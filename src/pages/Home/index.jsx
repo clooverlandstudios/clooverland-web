@@ -22,7 +22,7 @@ export default function Home({isMobile}) {
         [DEFAULT_ARCADE_URL+"sm4lls/icecream-catch", ARCS_PATH+"ic.png"],
         [DEFAULT_ARCADE_URL+"superplatform-reoriginal", ARCS_PATH+"sp_re.png"],
         [DEFAULT_ARCADE_URL+"lightsout-relight", ARCS_PATH+"lo_re.png"],
-        [DEFAULT_ARCADE_URL+"phatal-phrasing", ARCS_PATH+"temp.png"],
+        [DEFAULT_ARCADE_URL+"phatal-phrasin", ARCS_PATH+"temp.png"],
     ]
 
     const [current_game, setCurrentGame] = useState(0);
@@ -90,19 +90,30 @@ export default function Home({isMobile}) {
 
     // PRELOADING IMAGES
     const PRELOAD_IMAGES = [
-        "./images/arcade/arc_transit.gif",
-        "./images/arcade/resources/analog_inactive.png",
-        "./images/arcade/resources/analog_active.png",
-        "./images/arcade/resources/button_active.png",
-        "./images/arcade/resources/button_inactive.png",
-        "./images/arcade/arcs/sp_org.png",
-        "./images/arcade/arcs/sp_demo.png",
-        "./images/arcade/arcs/lo_org.png",
-        "./images/arcade/arcs/po_org.png",
-        "./images/arcade/arcs/ft.png",
-        "./images/arcade/arcs/ic.png",
-        "./images/arcade/arcs/sp_re.png",
-        "./images/arcade/arcs/lo_re.png",
+        "/images/arcade/arc_transit.gif",
+        "/images/arcade/resources/analog_inactive.png",
+        "/images/arcade/resources/analog_active.png",
+        "/images/arcade/resources/button_active.png",
+        "/images/arcade/resources/button_inactive.png",
+        "/images/arcade/arcs/sp_org.png",
+        "/images/arcade/arcs/sp_demo.png",
+        "/images/arcade/arcs/lo_org.png",
+        "/images/arcade/arcs/po_org.png",
+        "/images/arcade/arcs/ft.png",
+        "/images/arcade/arcs/ic.png",
+        "/images/arcade/arcs/sp_re.png",
+        "/images/arcade/arcs/lo_re.png",
+        "/images/arcade/arcs/temp.png",
+        "/images/progress_bar/bar_bg.png",
+        "/images/progress_bar/bar_front.png",
+        "/images/progress_bar/bar_prog_finish.png",
+        "/images/progress_bar/bar_prog_high.png",
+        "/images/progress_bar/bar_prog_med.png",
+        "/images/progress_bar/bar_prog_low.png",
+        "/images/website_logo.png",
+        "/images/prog_games/prog_lor.png",
+        "/images/prog_games/prog_pp.png",
+        "/images/bgs/bg_lightsoutrelight.png",
     ];
 
     function preloadImages(images) {
@@ -117,10 +128,42 @@ export default function Home({isMobile}) {
             })
         );
     }
+    
+    // PROGRESS BAR LOGIC \\
+    const [getPerc, setPerc] = useState(100); // CHANGE PROGRESS HERE
+
+    const [getImageURL, setImageURL] = useState("/images/progress_bar/bar_prog_low.png");
+    const [getGlow, setGlow] = useState("red");
+
+    const __BAR_COLOURS = {
+        "low" : "/images/progress_bar/bar_prog_low.png",
+        "med" : "/images/progress_bar/bar_prog_med.png",
+        "high" : "/images/progress_bar/bar_prog_high.png",
+        "finish" : "images/progress_bar/bar_prog_finish.png"
+    }
+
+    function updateBar() {
+        if (getPerc < 45) {
+            setImageURL(__BAR_COLOURS.low);
+            setGlow("red");
+        } else if (getPerc >= 45 && getPerc < 75) {
+            setImageURL(__BAR_COLOURS.med);
+            setGlow("yellow");
+        } else if (getPerc >= 75) {
+            setImageURL(__BAR_COLOURS.high);
+            setGlow("green");
+        }
+
+        if (getPerc === 100) {
+            setImageURL(__BAR_COLOURS.finish);
+            setGlow("lime");
+        }
+    }
 
 
     useEffect(()=>{
         changeArcadeGame();
+        updateBar();
 
         // PRELOADING IMAGES
         preloadImages(PRELOAD_IMAGES)
@@ -175,6 +218,46 @@ export default function Home({isMobile}) {
 
                     </div>
 
+                </div>
+
+                <h1 id='titles' style={{fontSize: `4em`, marginTop: `67px`}}> NEXT GAME </h1>
+                <p style={{color: `white`}}>PHATAL PHRASIN'</p>
+
+                <div style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: isMobile ? "10px" : "20px",
+                    zIndex: 5,
+                    position: "relative"
+                }}>
+                    <img 
+                        src="/images/prog_games/prog_pp.png"
+                        style={{
+                            width: isMobile ? "75%" : "450px",
+                            maxWidth: "90%",
+                            height: "auto",
+                            display: "block",
+                            imageRendering: "pixelated" // optional (good for your style)
+                        }}
+                    />
+                </div>
+
+                <h1 id='ITEM_PROGPERC' style={{fontSize: `2em`, marginTop: `-10px`}}>{getPerc}% </h1>
+
+                <div class="progress_bar_main" style={{filter: `drop-shadow(0 0 10px ${getGlow})`}}>
+                    <div class="progress_bar">
+
+                        <img src="/images/progress_bar/bar_bg.png" className="bar bg" />
+
+                        <div id ="ITEM_PROGBAR" class="bar progress_wrapper" style={{width: `${getPerc}%`}}>
+                            <img src={getImageURL} className="progress_fill" />
+                        </div>
+
+                        <img src="/images/progress_bar/bar_front.png" className="bar front" />
+
+                    </div>
                 </div>
 
             </main>

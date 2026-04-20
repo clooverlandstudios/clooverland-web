@@ -9,3 +9,48 @@ p {
 #__ARCADE {
     filter: drop-shadow(0 0 10px white);
 }
+
+.progress_bar_main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress_bar {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.bar {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bg {
+    position: relative;
+    z-index: 1;
+}
+
+.progress_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.progress_fill {
+    height: 100%;
+    width: auto;
+    display: block;
+}
+
+.front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
