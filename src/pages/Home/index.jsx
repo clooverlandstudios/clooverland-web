@@ -130,7 +130,7 @@ export default function Home({isMobile}) {
     }
     
     // PROGRESS BAR LOGIC \\
-    const [getPerc, setPerc] = useState(100); // CHANGE PROGRESS HERE
+    const [getPerc, setPerc] = useState(1); // CHANGE PROGRESS HERE
 
     const [getImageURL, setImageURL] = useState("/images/progress_bar/bar_prog_low.png");
     const [getGlow, setGlow] = useState("red");
